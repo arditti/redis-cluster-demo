@@ -1,4 +1,4 @@
-import { CLUSTER_CHANGE_EVENT } from "./const.ts";
+import { CLUSTER_CHANGE_EVENT } from './const.ts';
 
 let changesCount = 0;
 export const clusterChange = new Event(CLUSTER_CHANGE_EVENT);

@@ -1,7 +1,7 @@
-import * as encrypt from "./encrypt.ts";
-import { clusterChange } from "./events.ts";
-import { Shard } from "./types.ts";
-import { CLUSTER_MAX_SLOT, CLUSTER_MIN_SLOT, CLUSTER_SLOT_NAME_PREFIX, CLUSTER_SLOTS_COUNT } from "./const.ts";
+import * as encrypt from './encrypt.ts';
+import { clusterChange } from './events.ts';
+import { Shard } from './types.ts';
+import { CLUSTER_MAX_SLOT, CLUSTER_MIN_SLOT, CLUSTER_SLOT_NAME_PREFIX, CLUSTER_SLOTS_COUNT } from './const.ts';
 
 class Cluster {
   public readonly shards: Shard[] = [];
@@ -11,8 +11,8 @@ class Cluster {
       id: CLUSTER_SLOT_NAME_PREFIX + this.shards.length,
       slot: { min: CLUSTER_MIN_SLOT, max: CLUSTER_MAX_SLOT - 1 },
       keys: {}
-    }
-    this.shards.push(shard)
+    };
+    this.shards.push(shard);
   }
 
   private reArrangeKeys () {
@@ -53,7 +53,7 @@ class Cluster {
       id: CLUSTER_SLOT_NAME_PREFIX + this.shards.length,
       slot: { min: 0, max: 0 },
       keys: {}
-    }
+    };
 
     this.shards.push(newShard);
     this.updateSlotsRange();
@@ -65,13 +65,13 @@ class Cluster {
     if(this.shards.length === 1) return;
     const removedShard = this.shards.pop();
     this.updateSlotsRange();
-    this.shards[0].keys = Object.assign(this.shards[0].keys, removedShard?.keys)
+    this.shards[0].keys = Object.assign(this.shards[0].keys, removedShard?.keys);
     this.reArrangeKeys();
     window.dispatchEvent(clusterChange);
   }
 
   static isValidKey (key: string): boolean {
-    return Boolean(key.replace(/ /g, ""));
+    return Boolean(key.replace(/ /g, ''));
   }
 
   public addKey (key: string){

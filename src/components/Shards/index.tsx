@@ -1,9 +1,9 @@
-import Shard from "../Shard";
-import Box from "@mui/material/Box";
-import Cluster from "../../redis";
-import Divider from "@mui/material/Divider";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import Shard from '../Shard';
+import Box from '@mui/material/Box';
+import Cluster from '../../redis';
+import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import ZoomOutIcon from '@mui/icons-material/ZoomOutMap';
 import ZoomInIcon from '@mui/icons-material/ZoomInMap';
 
@@ -40,7 +40,7 @@ const Shards = () => {
         ))}
       </Box>
     </>
-  )
+  );
 };
 
 export default Shards;

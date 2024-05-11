@@ -43,7 +43,7 @@ const crc16 = (data: string) => {
   }
 
   return (~res) & 0x0ffff;
-}
+};
 
 export const hashKey = (key: string): number | null => {
   if(!key) return null;
@@ -56,4 +56,4 @@ export const hashKey = (key: string): number | null => {
 
   const hashtag = key.slice(openingBracketIndex + 1, closingBracketIndex);
   return crc16(hashtag);
-}
+};

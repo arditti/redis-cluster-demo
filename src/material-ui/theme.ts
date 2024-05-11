@@ -1,4 +1,6 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from '@mui/material/styles';
+
+const { palette } = createTheme();
 
 const theme = createTheme({
   typography: {
@@ -14,7 +16,19 @@ const theme = createTheme({
     },
     secondary: {
       main: '#E33E7F'
-    }
+    },
+    github: palette.augmentColor({
+      color: {
+        main: '#000000',
+      },
+      name: 'github',
+    }),
+    linkdin: palette.augmentColor({
+      color: {
+        main: '#0b66c2',
+      },
+      name: 'linkdin',
+    }),
   },
 });
 

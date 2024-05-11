@@ -1,7 +1,7 @@
-import Divider from "@mui/material/Divider";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import Box from "@mui/material/Box";
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
 
 const Intro = () => {
   return (
@@ -18,12 +18,12 @@ const Intro = () => {
         >
           Redis Cluster data sharding
         </Link>
-        <Typography display="inline"> Works, The demo isn't mean to behave like a full Redis engine but only a lean and
+        <Typography display="inline"> works, The demo isn't mean to behave like a full Redis engine but only a lean and
           simple key & slots & shards relationship without any server at the background.
         </Typography>
       </Box>
     </>
-  )
+  );
 };
 
 export default Intro;

@@ -1,0 +1,1 @@
+export const HASHTAG_TEXT = '{hashtag}';

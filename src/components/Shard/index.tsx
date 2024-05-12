@@ -1,14 +1,15 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
+import { BounceBox } from '../../style/aminations';
 import * as types from '../../redis/types';
 
 const Key = ({ name, data }: { name: string, data: types.Key }) => {
   return (
-    <Box display="flex" alignItems="center" marginBottom={1}>
+    <BounceBox display="flex" alignItems="center" marginBottom={1}>
       <Chip size="small" label={data.hash} style={{ marginRight: '5px' }} />
       <Typography whiteSpace="nowrap" variant="body2">{name}</Typography>
-    </Box>
+    </BounceBox>
   );
 };
 

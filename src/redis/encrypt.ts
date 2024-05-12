@@ -48,8 +48,8 @@ const crc16 = (data: string) => {
 export const getKeyToHash = (key: string): string => {
   const openingBracketIndex = key.indexOf('{');
   const closingBracketIndex = key.indexOf('}', openingBracketIndex);
-  const isHashTag = openingBracketIndex === -1 || closingBracketIndex === -1; 
-  const keyToHash = isHashTag ? key : key.slice(openingBracketIndex + 1, closingBracketIndex);
+  const isPlainKey = openingBracketIndex === -1 || closingBracketIndex === -1;
+  const keyToHash = isPlainKey ? key : key.slice(openingBracketIndex + 1, closingBracketIndex);
   return keyToHash;
 };
 

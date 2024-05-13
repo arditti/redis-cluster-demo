@@ -8,7 +8,7 @@ permissions:
   contents: read    # This is required for actions/checkout
 
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest
     steps:
       - name: Git clone the repository
@@ -28,7 +28,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::200155604948:role/github-ci-cd
+          role-to-assume: arn:aws:iam::200155604948:role/github-actions-user
           role-session-name: github-ci-cd-deploy
           aws-region: eu-central-1
       - name: Deploy

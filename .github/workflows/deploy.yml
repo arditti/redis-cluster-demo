@@ -2,8 +2,6 @@ name: AWS Service CI/CD
 on:
   push:
     branches: [main]
-env:
-  AWS_REGION : "eu-central-1"
 
 permissions:
   id-token: write   # This is required for requesting the JWT
@@ -32,9 +30,9 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::200155604948:role/github-ci-cd
           role-session-name: github-ci-cd-deploy
-          aws-region: ${{ env.AWS_REGION }}
+          aws-region: eu-central-1
       - name: Deploy
         run: |
           cd ./cdk
           npm install
-          cdk deploy --require-approval never
+          cdk deploy redis-cluster-demo --require-approval never

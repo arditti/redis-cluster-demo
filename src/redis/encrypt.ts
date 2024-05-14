@@ -45,15 +45,16 @@ const crc16 = (data: string) => {
   return (~res) & 0x0ffff;
 };
 
-export const hashKey = (key: string): number | null => {
-  if(!key) return null;
+export const getKeyToHash = (key: string): string => {
   const openingBracketIndex = key.indexOf('{');
   const closingBracketIndex = key.indexOf('}', openingBracketIndex);
+  const isPlainKey = openingBracketIndex === -1 || closingBracketIndex === -1;
+  const keyToHash = isPlainKey ? key : key.slice(openingBracketIndex + 1, closingBracketIndex);
+  return keyToHash;
+};
 
-  if (openingBracketIndex === -1 || closingBracketIndex === -1) {
-    return crc16(key);
-  }
-
-  const hashtag = key.slice(openingBracketIndex + 1, closingBracketIndex);
-  return crc16(hashtag);
+export const hashKey = (key: string): number | null => {
+  if(!key) return null;
+  const keyToHash = getKeyToHash(key);
+  return crc16(keyToHash);
 };

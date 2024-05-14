@@ -6,9 +6,9 @@ import Button from '@mui/material/Button';
 import Cluster from '../../redis';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import { CLUSTER_MAX_SLOT } from '../../redis/const.ts';
-import * as encrypt from '../../redis/encrypt.ts';
 import Alert from '@mui/material/Alert';
+import { getExplanationText } from './explanation.ts';
+import { HASHTAG_TEXT } from './consts.ts';
 
 const NewKeyForm = () => {
   const [explain, setExplain] = useState<string>('');
@@ -20,10 +20,10 @@ const NewKeyForm = () => {
 
     const key = keyElement.value;
     Cluster.addKey(key);
-    const keyHash = encrypt.hashKey(key);
-    if(!keyHash) return;
+    const explanationText = getExplanationText(key);
+    if(!explanationText) return;
 
-    setExplain(`The '${key}' CRC16 hash is ${keyHash} mod ${CLUSTER_MAX_SLOT} = slot ${keyHash % CLUSTER_MAX_SLOT}`);
+    setExplain(explanationText);
   };
 
   const removeExplain = () => {
@@ -39,7 +39,7 @@ const NewKeyForm = () => {
         <Box display='flex' alignItems='center' component='form' gap={2} onSubmit={handleNewKey}>
           <Box>
             <TextField name="key" label="Key" variant="outlined" onChange={removeExplain} />
-            <FormHelperText>You can also use {'{hashtag}'} for custom hashing</FormHelperText>
+            <FormHelperText>You can also use {HASHTAG_TEXT} for custom hashing</FormHelperText>
           </Box>
           <Button type='submit' variant='outlined' style={{ height: 'fit-content' }}>Store</Button>
         </Box>

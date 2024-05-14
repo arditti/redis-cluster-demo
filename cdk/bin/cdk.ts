@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib';
 import { CdkStack } from '../lib/cdk-stack';
+import { ACCOUNT, REGION } from '../lib/const';
 
 const app = new cdk.App();
 
 new CdkStack(app, 'redis-cluster-demo', {
   env: {
-    // account: process.env.CDK_AWS_ACCOUNT,
-    // region: process.env.CDK_AWS_REGION,
-    account: '200155604948',
-    region: 'eu-central-1',
+    account: ACCOUNT,
+    region: REGION,
   }
 });

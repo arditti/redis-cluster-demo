@@ -4,12 +4,13 @@ import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as cfOrigins from 'aws-cdk-lib/aws-cloudfront-origins';
 import { CfnOutput } from 'aws-cdk-lib';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
-import { APP_DOMAIN, APP_DOMAIN_CERT_ARN } from '../const';
+import { APP_DOMAIN } from '../const';
 
 interface IProps {
     bucket: s3.IBucket,
-    appFolder: string,
-    originAccessIdentity: cf.IOriginAccessIdentity,
+    path: string,
+    oai: cf.IOriginAccessIdentity,
+    acmArn: string,
 }
 
 export class Cloudfront extends Construct {
@@ -19,15 +20,15 @@ export class Cloudfront extends Construct {
         super(scope, id);
 
         const origin = new cfOrigins.S3Origin(props.bucket, {
-            originAccessIdentity: props.originAccessIdentity,
-            originPath: `/${props.appFolder}`
+            originAccessIdentity: props.oai,
+            originPath: `/${props.path}`
         });
 
         this.distribution = new cf.Distribution(this, `${id}-distribution`, {
             comment: APP_DOMAIN,
             domainNames: [APP_DOMAIN],
             defaultRootObject: 'index.html',
-            certificate: acm.Certificate.fromCertificateArn(this, `acm-cert-${APP_DOMAIN}`, APP_DOMAIN_CERT_ARN),
+            certificate: acm.Certificate.fromCertificateArn(this, `acm-cert-${APP_DOMAIN}`, props.acmArn),
             defaultBehavior: {
                 origin,
                 compress: true,

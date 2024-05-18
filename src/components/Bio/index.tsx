@@ -7,7 +7,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 const Bio = () => {
 
   const openGithub = () => {
-    window.open('https://github.com/or-bd', '_blank');
+    window.open('https://github.com/or-bd/redis-cluster-demo', '_blank');
   };
 
   const openLinkdin = () => {

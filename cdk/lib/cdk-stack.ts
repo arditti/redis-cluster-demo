@@ -25,7 +25,7 @@ export class CdkStack extends cdk.Stack {
       destinationBucket: bucket,
       distribution: cf.distribution,
       destinationKeyPrefix: id,
-      distributionPaths: ['/index.html'],
+      distributionPaths: ['/*'],
       cacheControl: [
         s3Deploy.CacheControl.maxAge(Duration.days(1)),
       ],
